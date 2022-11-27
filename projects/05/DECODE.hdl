@@ -1,0 +1,27 @@
+
+CHIP DECODE {
+
+    IN  instruction[16];        
+
+    OUT i, a,       
+        d1, d2, d3,       
+        j1, j2, j3,   
+        c1, c2, c3, c4, c5, c6;
+
+    PARTS:
+    Mux(a=false, b=instruction[5], sel=instruction[15], out=d1);
+    Mux(a=false, b=instruction[4], sel=instruction[15], out=d2);
+    Mux(a=false, b=instruction[3], sel=instruction[15], out=d3);
+    Mux(a=false, b=instruction[2], sel=instruction[15], out=j1);
+    Mux(a=false, b=instruction[1], sel=instruction[15], out=j2);
+    Mux(a=false, b=instruction[0], sel=instruction[15], out=j3);
+    And(a=true, b=instruction[15], out=i);
+    And(a=true, b=instruction[11], out=c1);
+    And(a=true, b=instruction[10], out=c2);
+    And(a=true, b=instruction[9], out=c3);
+    And(a=true, b=instruction[8], out=c4);
+    And(a=true, b=instruction[7], out=c5);
+    And(a=true, b=instruction[6], out=c6);
+    And(a=true, b=instruction[12], out=a);
+
+}
